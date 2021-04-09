@@ -185,7 +185,7 @@ class VRift:
     def calcSteps(self,mouse,caught):
         if(mouse=="Eclipse"):
             if(caught):
-                return 1+self.CF
+                return self.Speed
             else:
                 return 0
         if(mouse=="Bulwark of Ascent"):
@@ -205,7 +205,10 @@ class VRift:
             if(caught):
                 return self.Speed
             else:
-                return 0
+                if(self.UU):
+                    return -5
+                elif(self.UU==False):
+                    return 0
     #updates the steps in the run
     #Also handles niche cases, like if bulwark can't push you back the full 10 steps because of the floor bottom
     #Or if you don't get a full catch worth of steps because you've reached the eclipse floor
