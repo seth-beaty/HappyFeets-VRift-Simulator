@@ -404,6 +404,16 @@ class VRift:
                 conditional=""
                 
             print("Chance of Eclipse ",eclipse,conditional,self.findPercentFloor(eclipse,eclipseData),"%")
+        #SAME PROBABILITY ANALYSIS BUT FOR INDIVIDUAL FLOORS
+        #minFloor=int(floorData.min())
+        #maxFloor=int(floorData.max())
+        
+        #for floor in range(minFloor,maxFloor+1):
+            #conditional=" or higher: "
+            #if(floor==maxFloor):
+                #conditional=""
+                
+            #print("Chance of Floor ",floor,conditional,self.findPercentFloor(floor,floorData),"%")
               
 tower=VRift()
 
