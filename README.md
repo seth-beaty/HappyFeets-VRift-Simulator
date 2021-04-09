@@ -1,5 +1,5 @@
 # HappyFeet-s-VRift-Simulator
-A simulator for MouseHunt's Valour Rift. It draws upon a database of mouse data, in order to simulate each hunt in the Tower, with all Tower upgrades and relevant augmentations included. Bulwark of Ascent, Terrified Adventurer, and Eclipse mice are all accounted for, in terms of their special effects. Once a new floor is reached, the pool of mice automatically adjusts for floor specific mice, as these vary in their AR/CR between floor types. There is also an option to toggle using the Ultimate Charm only for Eclipse Floor mice.
+A simulator for MouseHunt's Valour Rift. It draws upon a database of mouse data, in order to simulate each hunt in the Tower, with all Tower upgrades and relevant augmentations included. Bulwark of Ascent, Terrified Adventurer, and Eclipse mice are all accounted for, in terms of their special effects. Once a new floor is reached, the pool of mice automatically adjusts for floor specific mice, as these vary in their catch rates between floor types. There is also an option to toggle using the Ultimate Charm only for Eclipse Floor mice.
 
 Using the Simulator:
 
