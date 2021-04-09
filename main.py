@@ -6,9 +6,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
-
-
 import numpy as np
 import random as rd
 #Un-comment this if you want histograms, as well as one other line at the bottom of the VRift class
@@ -414,10 +411,3 @@ tower=VRift()
 #print(tower.beginRun())
 
 tower.collectData(runs=100)
-
-
-# In[ ]:
-
-
-
-
