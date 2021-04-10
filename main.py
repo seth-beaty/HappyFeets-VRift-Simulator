@@ -22,11 +22,14 @@ class MiceData:
     miceDict[("Medium",False)]=[0.,0.12,0.,0.09,0.,0.28,0.03,0.02,0.36,0.10]
     miceDict[("High",False)]=[0.,0.11,0.,0.08,0.12,0.13,0.03,0.02,0.33,0.18]
     miceDict[("Highest",False)]=[0.,0.10,0.11,0.07,0.07,0.04,0.02,0.02,0.29,0.28]
+    miceDict[("Guess",False)]=[0.,0.10,0.11,0.07,0.07,0.04,0.02,0.02,0.29,0.28]#Same as highest
     
     miceDict[("Low",True)]=[0.18,0.19,0.,0.11,0.,0.,0.04,0.02,0.46,0.]
     miceDict[("Medium",True)]=[0.18,0.11,0.,0.08,0.,0.24,0.03,0.01,0.28,0.07]
     miceDict[("High",True)]=[0.19,0.1,0.,0.07,0.1,0.11,0.02,0.01,0.27,0.13]
     miceDict[("Highest",True)]=[0.20,0.09,0.08,0.06,0.05,0.03,0.02,0.01,0.23,0.23]
+    #Guess floor is added, with AR of Bulwark guess for TE6+. AR of TA is tuned according to the VRift data set for UC runs, getting the same result with 7.7%.
+    miceDict[("Guess",True)]=[0.303,0.077,0.06,0.04,0.03,0.02,0.01,0.01,0.22,0.23]
     miceDict[("Eclipse",False)]=[1]
     miceDict[("Eclipse",True)]=[1]
         
@@ -81,8 +84,10 @@ class MiceData:
             floorRange="Medium"
         if(16<floor<=23):
             floorRange="High"
-        if(24<floor):
+        if(24<floor<=47):
             floorRange="Highest"
+        if(47<floor):
+            floorRange="Guess"
         #floorType is Puppet, Thief, Melee etc.
         floorTypes=MiceData.floorPowers.keys()
         for i,ftype in enumerate(floorTypes):
