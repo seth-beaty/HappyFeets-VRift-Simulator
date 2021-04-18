@@ -183,6 +183,9 @@ class VRift:
         print("Detail?")
         self.Detail=bool(int(input()))
         
+        self.TACount=0
+        self.BulwarkCount=0
+        
     #Makes an object for the mini-CRE above  
     mouseBank=MiceData
     
@@ -194,11 +197,13 @@ class VRift:
             else:
                 return 0
         if(mouse=="Bulwark of Ascent"):
+            self.BulwarkCount+=1
             if(caught):
                 return self.Speed
             else:
                 return -10
         if(mouse=="Terrified Adventurer"):
+            self.TACount+=1
             if(caught):
                 if(self.StringStepping==True):
                     return self.Speed*4
@@ -322,6 +327,8 @@ class VRift:
         rd.seed(time.time())
         huntsRemaining=self.Sync
         totalHunts=0
+        self.TACount=0
+        self.BulwarkCount=0
         while(huntsRemaining>0):
             currFloor=self.calculateFloor(self.currentStep)
             if(self.Detail):
@@ -356,7 +363,7 @@ class VRift:
             
         self.currentStep=0
         
-        return finalFloor,eclipseNumber,totalHunts
+        return finalFloor,eclipseNumber,totalHunts,self.TACount,self.BulwarkCount
     
     #Chance to reach specified floor or higher (works for Eclipses or Normal)
     def findPercentFloor(self,floor,data):
@@ -390,6 +397,8 @@ class VRift:
         floorData=df[0]
         eclipseData=df[1]
         huntData=df[2]
+        TAData=df[3]
+        BulwarkData=df[4]
         
         meanFloor=floorData.mean()
         sdFloor=np.round(np.sqrt(floorData.var()),2)
@@ -410,8 +419,21 @@ class VRift:
             conditional=" or higher: "
             if(eclipse==maxEclipse):
                 conditional=""
-                
-            print("Chance of Eclipse ",eclipse,conditional,self.findPercentFloor(eclipse,eclipseData),"%")
+            #Gets rows corresponding to current eclipse
+            currentEclipse=df[eclipseData==eclipse]
+
+            #Calculate means of TA/Bulwark Per Hunt
+            meanTAPerHunt=np.round((currentEclipse[3]/currentEclipse[2]).mean(),3)
+            meanBulwarkPerHunt=np.round((currentEclipse[4]/currentEclipse[2]).mean(),3)
+
+            #Multiply per hunt values by mean of the minimum Eclipse floor
+            minEclipseHunts=df[eclipseData==minEclipse][2].mean()
+
+            #Data now normalised to the minimum Eclipse Floor hunts
+            normTA=np.round(meanTAPerHunt*minEclipseHunts,1)
+            normBulwark=np.round(meanBulwarkPerHunt*minEclipseHunts,1)
+
+            print("Chance of Eclipse ",eclipse,conditional,self.findPercentFloor(eclipse,eclipseData),"%","Mean TAs (Normalised): ",normTA,"Mean Bulwarks (Normalised): ",normBulwark)
         #SAME PROBABILITY ANALYSIS BUT FOR INDIVIDUAL FLOORS
         #minFloor=int(floorData.min())
         #maxFloor=int(floorData.max())
@@ -422,10 +444,10 @@ class VRift:
                 #conditional=""
                 
             #print("Chance of Floor ",floor,conditional,self.findPercentFloor(floor,floorData),"%")
-              
+        return df
 tower=VRift()
 
 #Un-comment this for a single run (verbosity allowed). Prints (Floor Reached, Eclipse Reached and Hunts Taken)
 #print(tower.beginRun())
 
-tower.collectData(runs=100)
+data=tower.collectData(runs=100)
