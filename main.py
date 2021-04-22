@@ -197,10 +197,10 @@ class VRift:
             else:
                 return 0
         if(mouse=="Bulwark of Ascent"):
-            self.BulwarkCount+=1
             if(caught):
                 return self.Speed
             else:
+                self.BulwarkCount+=1
                 return -10
         if(mouse=="Terrified Adventurer"):
             self.TACount+=1
@@ -433,7 +433,7 @@ class VRift:
             normTA=np.round(meanTAPerHunt*minEclipseHunts,1)
             normBulwark=np.round(meanBulwarkPerHunt*minEclipseHunts,1)
 
-            print("Chance of Eclipse ",eclipse,conditional,self.findPercentFloor(eclipse,eclipseData),"%","Mean TAs (Normalised): ",normTA,"Mean Bulwarks (Normalised): ",normBulwark)
+            print("Chance of Eclipse ",eclipse,conditional,self.findPercentFloor(eclipse,eclipseData),"%","Mean TAs (Normalised): ",normTA,"Mean Bulwarks Missed (Normalised): ",normBulwark)
         #SAME PROBABILITY ANALYSIS BUT FOR INDIVIDUAL FLOORS
         #minFloor=int(floorData.min())
         #maxFloor=int(floorData.max())
@@ -450,4 +450,4 @@ tower=VRift()
 #Un-comment this for a single run (verbosity allowed). Prints (Floor Reached, Eclipse Reached and Hunts Taken)
 #print(tower.beginRun())
 
-data=tower.collectData(runs=100)
+df=tower.collectData(runs=100)
