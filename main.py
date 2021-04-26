@@ -323,6 +323,7 @@ class VRift:
     
     #Function to start the run
     def beginRun(self):
+        startingStep=self.currentStep
         #Seeding rng
         rd.seed(time.time())
         huntsRemaining=self.Sync
@@ -361,7 +362,7 @@ class VRift:
             print("Floor: ",finalFloor)
             print("Eclipse: ",eclipseNumber)
             
-        self.currentStep=0
+        self.currentStep=startingStep
         
         return finalFloor,eclipseNumber,totalHunts,self.TACount,self.BulwarkCount
     
