@@ -22,14 +22,16 @@ class MiceData:
     miceDict[("Medium",False)]=[0.,0.12,0.,0.09,0.,0.28,0.03,0.02,0.36,0.10]
     miceDict[("High",False)]=[0.,0.11,0.,0.08,0.12,0.13,0.03,0.02,0.33,0.18]
     miceDict[("Highest",False)]=[0.,0.10,0.11,0.07,0.07,0.04,0.02,0.02,0.29,0.28]
-    miceDict[("Guess",False)]=[0.,0.10,0.11,0.07,0.07,0.04,0.02,0.02,0.29,0.28]#Same as highest
+    miceDict[("ExtraUU1",False)]=[0.,0.10,0.11,0.07,0.07,0.04,0.02,0.02,0.29,0.28]#Same as highest
+    miceDict[("ExtraUU2",False)]=[0.,0.10,0.11,0.07,0.07,0.04,0.02,0.02,0.29,0.28]#Same as highest
     
-    miceDict[("Low",True)]=[0.18,0.19,0.,0.11,0.,0.,0.04,0.02,0.46,0.]
-    miceDict[("Medium",True)]=[0.18,0.11,0.,0.08,0.,0.24,0.03,0.01,0.28,0.07]
-    miceDict[("High",True)]=[0.19,0.1,0.,0.07,0.1,0.11,0.02,0.01,0.27,0.13]
-    miceDict[("Highest",True)]=[0.20,0.09,0.08,0.06,0.05,0.03,0.02,0.01,0.23,0.23]
-    #Guess floor is added, with AR of Bulwark guess for TE6+. AR of TA is tuned according to the VRift data set for UC runs, getting the same result with 7.7%.
-    miceDict[("Guess",True)]=[0.303,0.077,0.06,0.04,0.03,0.02,0.01,0.01,0.22,0.23]
+    #UU Data added thanks to Aaron/Xalca
+    miceDict[("Low",True)]=[0.1827,0.1819,0.,0.1169,0.,0.,0.0412,0.0220,0.4553,0.]
+    miceDict[("Medium",True)]=[0.1875,0.1106,0.,0.0729,0.,0.2284,0.0215,0.0149,0.2897,0.0745]
+    miceDict[("High",True)]=[0.1935,0.0996,0.,0.0658,0.1031,0.1084,0.0195,0.0139,0.2644,0.1318]
+    miceDict[("Highest",True)]=[0.1963,0.0925,0.0915,0.0603,0.0622,0.0361,0.0173,0.0123,0.2454,0.1862]
+    miceDict[("Extra UU1",True)]=[0.2016,0.0856,0.0805,0.0568,0.0573,0.0376,0.0161,0.0100,0.2247,0.2299]
+    miceDict[("Extra UU2",True)]=[0.2009,0.0795,0.0793,0.0532,0.0539,0.0322,0.0158,0.0103,0.2116,0.2631]
     miceDict[("Eclipse",False)]=[1]
     miceDict[("Eclipse",True)]=[1]
         
@@ -86,8 +88,10 @@ class MiceData:
             floorRange="High"
         if(24<floor<=47):
             floorRange="Highest"
-        if(47<floor):
-            floorRange="Guess"
+        if(48<floor<=63):
+            floorRange="ExtraUU1"
+        if(64<floor):
+            floorRange="ExtraUU2"
         #floorType is Puppet, Thief, Melee etc.
         floorTypes=MiceData.floorPowers.keys()
         for i,ftype in enumerate(floorTypes):
