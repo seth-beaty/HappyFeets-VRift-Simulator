@@ -9,7 +9,5 @@ The collectData() function performs a number of VRift runs (placed in the functi
 Credits to tsitu for the CRE data and formula. The relevant github page is linked here: 
 https://github.com/tsitu/MH-Tools
 
-For more details, refer to the reddit post here:
-https://www.reddit.com/r/mousehunt/comments/mn7y5n/happyfeets_valour_rift_simulator/
 
 Happy Hunting!
